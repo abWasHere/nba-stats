@@ -6,12 +6,12 @@ import "./../../styles/header.css";
 const Header = () => {
 	return (
 		<header className="Header">
-			<h1>NBA STATS</h1>
-			<strong>Everything that you need to know</strong>
+			<h1 className="title">NBA STATS</h1>
+			<p className="sub-title">Everything that you need to know</p>
 			<div id="nba-compact-logo">
 				<Link to="/">
 					<img
-						width="150"
+						width="50"
 						alt="NBA Logo"
 						src="./../../images/nba-compact-logo.svg"
 					/>
