@@ -1,0 +1,9 @@
+.BestPlayers {
+	padding: calc(var(--component-inside-padding) * 2)
+		var(--component-inside-padding);
+}
+
+.BestPlayers .col.strong {
+	padding-bottom: 10px;
+	border-bottom: 1px solid black;
+}
