@@ -13,7 +13,6 @@ const TeamsList = () => {
 			.getAllTeams()
 			.then((apiRes) => {
 				setAllTeams(apiRes);
-				//console.log("all teams", apiRes);
 			})
 			.then(() => setTeamsLoading(false))
 			.catch((err) => console.log(err));

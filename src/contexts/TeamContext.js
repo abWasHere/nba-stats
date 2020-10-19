@@ -4,6 +4,7 @@ export const TeamContext = createContext();
 
 const TeamContextProvider = (props) => {
 	const [team, setTeam] = useState();
+	const [teamMembers, setTeamMembers] = useState();
 
 	const chooseTeam = (choice) => {
 		setTeam(choice);
@@ -17,6 +18,8 @@ const TeamContextProvider = (props) => {
 			value={{
 				team,
 				chooseTeam,
+				teamMembers,
+				setTeamMembers,
 			}}
 		>
 			{props.children}

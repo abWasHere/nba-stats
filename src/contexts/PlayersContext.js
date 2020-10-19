@@ -7,7 +7,7 @@ export const PlayersContext = createContext();
 
 const PlayersContextProvider = (props) => {
 	const { season } = useContext(SeasonContext);
-	const { team } = useContext(TeamContext);
+	const { team, setTeamMembers } = useContext(TeamContext);
 	const [playersAreLoading, setPlayersLoading] = useState(true);
 	const [statsAreLoading, setStatsLoading] = useState(true);
 	const [players, setPlayers] = useState([]);
@@ -18,23 +18,23 @@ const PlayersContextProvider = (props) => {
 		setPlayersLoading(true);
 
 		apiHandler
-			.getAllPlayersFromSeason(season, 0)
+			.getAllPlayersFromSeason(0)
 			.then((apiRes) => {
-				let totalPages = apiRes.meta.total_pages - 20; // FIXME: the amount of pages generates too many requests for this API. So I reduced them by 20.
+				let totalPages = apiRes.meta.total_pages; // FIXME: the amount of pages generates too many requests for this API.
 				let reqArr = [];
 
 				for (let page = 0; page < totalPages; page++) {
-					reqArr.push(apiHandler.getAllPlayersFromSeason(season, page));
+					reqArr.push(apiHandler.getAllPlayersFromSeason(page));
 				}
 
 				Promise.all(reqArr)
 					.then((apiRes) => {
 						let allData = [];
 						for (let res of apiRes) {
-							//console.log(res.data);
-							allData.push(res.data);
+							allData = [...allData, res.data];
 						}
-						setPlayers([...players, allData.flat()]);
+						//console.log(allData.flat());
+						setPlayers(allData.flat());
 					})
 					.then(() => setPlayersLoading(false))
 					.catch((err) => console.log(err));
@@ -42,30 +42,32 @@ const PlayersContextProvider = (props) => {
 
 			.catch((err) => console.log(err));
 	}, [team]);
-	/* 
+
 	// -------------------- GET STATS FROM EACH INDIVIDUAL PLAYER OF A TEAM
 
 	useEffect(() => {
-		setStatsLoading(true)
+		setStatsLoading(true);
 
-		let statsReqArr = [];
+		if (team) {
+			let teamId = team.id;
+			let playersFromTeam = players.filter(
+				(player) => player.team.id === teamId && player.height_feet !== null
+			);
+			setTeamMembers(playersFromTeam);
 
-		for (let player of players) {
-			// console.log("id ", player.id);
-			statsReqArr.push(apiHandler.getOnePlayerStats(season, player.id));
+			let idsQueryParam = "";
+			for (let player of playersFromTeam) {
+				idsQueryParam += `&player_ids[]=${player.id}`;
+			}
+
+			apiHandler
+				.getPlayersStats(season, idsQueryParam)
+				.then((dbRes) => setStats(dbRes))
+				.then(() => setStatsLoading(false))
+				.catch((err) => console.log(err));
 		}
+	}, [season, players, team]);
 
-		Promise.all(statsReqArr)
-			.then((apiRes) => {
-				for (let res of apiRes) {
-					console.log("individual STATS res == ", res);
-					setStats(...stats, res);
-				}
-			})
-			.then(() => setStatsLoading(false))
-			.catch((err) => console.log(err));
-	}, [playersAreLoading]); 
-  */
 	// -------------------- Context Provider
 
 	return (

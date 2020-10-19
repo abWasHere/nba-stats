@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { SeasonContext } from "./../../contexts/SeasonContext";
 import { PlayersContext } from "./../../contexts/PlayersContext";
+import { TeamContext } from "./../../contexts/TeamContext";
 
 import Fgm3PlayersList from "./Fgm3PlayersList";
 import FtmPlayersList from "./FtmPlayersList";
@@ -11,14 +12,17 @@ import "./../../styles/bestPlayers.css";
 // -----------------------------------------------
 const BestPlayers = () => {
 	const { season } = useContext(SeasonContext);
+	const { team } = useContext(TeamContext);
 	const { playersAreLoading, statsAreLoading } = useContext(PlayersContext);
 
 	//-----------
-	if (playersAreLoading && statsAreLoading)
+	if ((playersAreLoading && statsAreLoading) || !team)
 		return <div>Loading players infos...</div>;
 	return (
 		<div className="BestPlayers">
-			<h2 className="section-title">{season} best players</h2>
+			<h2 className="section-title">
+				{season} {team.full_name} best players
+			</h2>
 
 			<div className="container">
 				<div className="row">

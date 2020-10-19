@@ -22,9 +22,9 @@ export default {
 			.catch(errorHandler);
 	},
 
-	getAllPlayersFromSeason(year, page) {
+	getAllPlayersFromSeason(page) {
 		return service
-			.get(`/players?seasons[]=${year}&per_page=100&page=${page}`)
+			.get(`/players?per_page=100&page=${page}`)
 			.then((res) => res.data)
 			.catch(errorHandler);
 	},
@@ -36,16 +36,9 @@ export default {
 			.catch(errorHandler);
 	},
 
-	getOnePlayerStats(year, id) {
+	getPlayersStats(year, idsQueryParam) {
 		return service
-			.get(`/season_averages?season=${year}&player_ids[]=${id}`)
-			.then((res) => res.data.data)
-			.catch(errorHandler);
-	},
-
-	getOnePlayerStats(year, id) {
-		return service
-			.get(`/season_averages?season=${year}&player_ids[]=${id}`)
+			.get(`/season_averages?season=${year}${idsQueryParam}`)
 			.then((res) => res.data.data)
 			.catch(errorHandler);
 	},

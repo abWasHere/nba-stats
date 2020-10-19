@@ -3,6 +3,12 @@
 		var(--component-inside-padding);
 }
 
+.TeamsList .main-team-infos {
+	margin-left: 20px;
+	border-bottom: 1px solid var(--logo-red-color);
+	text-align: end;
+}
+
 /* Material UI style modifications */
 .TeamsFilter .MuiAutocomplete-inputRoot {
 	font-family: "Oswald", sans-serif;
@@ -13,7 +19,8 @@
 	color: white;
 	font-family: "Oswald", sans-serif;
 }
-.TeamsFilter .MuiIconButton-root {
+.TeamsFilter .MuiIconButton-root,
+.TeamsFilter .MuiTouchRipple-root {
 	color: white;
 }
 .TeamsFilter .MuiInputLabel-outlined.MuiInputLabel-shrink {
