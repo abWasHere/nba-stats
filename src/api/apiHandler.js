@@ -15,9 +15,16 @@ const errorHandler = (error) => {
 export default {
 	service,
 
-	getAllPlayersFromSeason(year) {
+	getAllTeams() {
 		return service
-			.get(`/players?seasons[]=${year}&per_page=100`)
+			.get(`/teams`)
+			.then((res) => res.data.data)
+			.catch(errorHandler);
+	},
+
+	getAllPlayersFromSeason(year, page) {
+		return service
+			.get(`/players?seasons[]=${year}&per_page=100&page=${page}`)
 			.then((res) => res.data)
 			.catch(errorHandler);
 	},
@@ -29,17 +36,17 @@ export default {
 			.catch(errorHandler);
 	},
 
-	getOnePlayerStats(id, year) {
+	getOnePlayerStats(year, id) {
 		return service
 			.get(`/season_averages?season=${year}&player_ids[]=${id}`)
 			.then((res) => res.data.data)
 			.catch(errorHandler);
 	},
 
-	getAllStats(year) {
+	getOnePlayerStats(year, id) {
 		return service
-			.get(`/stats`)
-			.then((res) => res.data)
+			.get(`/season_averages?season=${year}&player_ids[]=${id}`)
+			.then((res) => res.data.data)
 			.catch(errorHandler);
 	},
 };

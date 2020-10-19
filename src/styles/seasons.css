@@ -1,16 +1,8 @@
 .SeasonsList {
-	background-color: var(--logo-blue-color);
 	padding: calc(var(--component-inside-padding) * 2)
 		var(--component-inside-padding);
-	color: #fff;
 }
-
-.SeasonsList .season {
-	background-color: transparent;
-	color: #fff;
-}
-
-.SeasonsList .season {
-	background-color: transparent;
+.SeasonsList .season.btn:focus {
+	background-color: var(--logo-red-color);
 	color: #fff;
 }

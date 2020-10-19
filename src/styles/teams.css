@@ -1,0 +1,23 @@
+.TeamsList {
+	padding: calc(var(--component-inside-padding) * 2)
+		var(--component-inside-padding);
+}
+
+/* Material UI style modifications */
+.TeamsFilter .MuiAutocomplete-inputRoot {
+	font-family: "Oswald", sans-serif;
+	background-color: #000;
+	color: white;
+}
+.TeamsFilter .MuiFormLabel-root {
+	color: white;
+	font-family: "Oswald", sans-serif;
+}
+.TeamsFilter .MuiIconButton-root {
+	color: white;
+}
+.TeamsFilter .MuiInputLabel-outlined.MuiInputLabel-shrink {
+	transform: translate(16px, -22px) scale(0.75);
+	color: #000;
+	font-size: 20px;
+}

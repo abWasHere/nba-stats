@@ -20,7 +20,7 @@ const SeasonsList = () => {
 					<button
 						key={choice.id}
 						type="button"
-						className="season btn "
+						className="season btn btn-outline-danger "
 						onClick={() => chooseSeason(choice.year)}
 					>
 						{choice.year} - {choice.year + 1}

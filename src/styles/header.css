@@ -1,8 +1,8 @@
 .Header {
-	color: #000;
+	color: #fff;
+	background-color: var(--logo-blue-color);
 	text-align: center;
 	padding: 25px 0;
-	box-shadow: 5px 2px 5px rgb(233, 233, 233);
 }
 
 .Header #nba-compact-logo {

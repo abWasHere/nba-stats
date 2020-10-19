@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { SeasonContext } from "./../../contexts/SeasonContext";
 import { PlayersContext } from "./../../contexts/PlayersContext";
 
@@ -11,10 +11,11 @@ import "./../../styles/bestPlayers.css";
 // -----------------------------------------------
 const BestPlayers = () => {
 	const { season } = useContext(SeasonContext);
-	const { isLoading } = useContext(PlayersContext);
+	const { playersAreLoading, statsAreLoading } = useContext(PlayersContext);
 
 	//-----------
-	if (isLoading) return <div>Loading...</div>;
+	if (playersAreLoading && statsAreLoading)
+		return <div>Loading players infos...</div>;
 	return (
 		<div className="BestPlayers">
 			<h2 className="section-title">{season} best players</h2>
