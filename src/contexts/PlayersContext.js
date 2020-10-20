@@ -8,9 +8,12 @@ export const PlayersContext = createContext();
 const PlayersContextProvider = (props) => {
 	const { season } = useContext(SeasonContext);
 	const { team, setTeamMembers } = useContext(TeamContext);
-	const [playersAreLoading, setPlayersLoading] = useState();
-	const [statsAreLoading, setStatsLoading] = useState(true);
+
 	const [players, setPlayers] = useState([]);
+	const [playersAreLoading, setPlayersLoading] = useState();
+	const [playerProfile, setPlayerProfile] = useState();
+
+	const [statsAreLoading, setStatsLoading] = useState(true);
 	const [stats, setStats] = useState([]);
 
 	// -------------------- GET ALL PLAYERS
@@ -39,7 +42,7 @@ const PlayersContextProvider = (props) => {
 			})
 			.catch((err) => console.log(err))
 			.then(() => setPlayersLoading(false));
-	}, [team]);
+	}, []);
 
 	// -------------------- GET STATS FROM EACH INDIVIDUAL PLAYER OF A TEAM
 
@@ -64,7 +67,13 @@ const PlayersContextProvider = (props) => {
 				.then(() => setStatsLoading(false))
 				.catch((err) => console.log(err));
 		}
-	}, [season, players, team]);
+	}, [team, season]);
+
+	// -------------------- DISPLAY ONE PLAYER PROFILE
+	const displayPlayerProfile = (person) => {
+		setPlayerProfile(person);
+		console.log("player pick =", person);
+	};
 
 	// -------------------- Context Provider
 
@@ -75,6 +84,8 @@ const PlayersContextProvider = (props) => {
 				playersAreLoading,
 				stats,
 				statsAreLoading,
+				playerProfile,
+				displayPlayerProfile,
 			}}
 		>
 			{props.children}

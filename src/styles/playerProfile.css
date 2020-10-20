@@ -1,0 +1,24 @@
+.PlayerProfile {
+	border-radius: 15px;
+	box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+.modal-header {
+	background-color: springgreen;
+}
+
+.modal-title {
+	font-size: 35px;
+}
+
+.modal-body p:not(.modal-team-name) {
+	padding-top: 10px;
+}
+
+.modal-team-name {
+	font-size: 22px;
+	text-align: end;
+	font-weight: 700;
+	border-bottom: 1px solid #e9ecef;
+	padding-bottom: 10px;
+}

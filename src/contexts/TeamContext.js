@@ -1,10 +1,25 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
+import apiHandler from "./../api/apiHandler";
 
 export const TeamContext = createContext();
 
 const TeamContextProvider = (props) => {
+	const [allTeams, setAllTeams] = useState([]);
+	const [teamsAreLoading, setTeamsLoading] = useState();
+
 	const [team, setTeam] = useState();
 	const [teamMembers, setTeamMembers] = useState();
+
+	useEffect(() => {
+		setTeamsLoading(true);
+		apiHandler
+			.getAllTeams()
+			.then((apiRes) => {
+				setAllTeams(apiRes);
+			})
+			.then(() => setTeamsLoading(false))
+			.catch((err) => console.log(err));
+	}, []);
 
 	const chooseTeam = (choice) => {
 		setTeam(choice);
@@ -16,6 +31,8 @@ const TeamContextProvider = (props) => {
 	return (
 		<TeamContext.Provider
 			value={{
+				allTeams,
+				teamsAreLoading,
 				team,
 				chooseTeam,
 				teamMembers,

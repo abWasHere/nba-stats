@@ -1,4 +1,10 @@
 .Dashboard {
 	min-height: 100%;
-	padding: 30px 40px;
+	padding: 30px 12%;
+}
+
+.Dashboard .TeamsList,
+.SeasonsList,
+.BestPlayers {
+	margin-bottom: 20px;
 }

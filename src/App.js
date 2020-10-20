@@ -10,7 +10,6 @@ function App() {
 			<Header />
 			<Switch>
 				<Route exact path="/" component={Dashboard} />
-				{/* <Route path="/player/{id}" component={PlayerDetails} /> */}
 			</Switch>
 			<Footer />
 		</div>

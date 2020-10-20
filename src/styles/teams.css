@@ -4,30 +4,40 @@
 }
 
 .TeamsList .main-team-infos {
-	margin-left: 60px;
-	border-bottom: 1px solid var(--logo-red-color);
+	margin-left: 5%;
+	border-bottom: 1px solid var(--logo-blue-color);
+	align-items: flex-start;
 }
 
-.TeamsList .team-conference,
-.team-division {
+.TeamsList .team-name {
+	font-size: 29px;
+	text-transform: uppercase;
+	margin-right: 2%;
+	line-height: 26px;
+}
+
+.TeamsList .team-conference {
+	min-width: fit-content;
+}
+.TeamsList .team-conference-content {
 	font-weight: 700;
 }
 
 /* Material UI style modifications */
-.TeamsFilter .MuiAutocomplete-inputRoot {
+.TeamsList .MuiAutocomplete-inputRoot {
 	font-family: "Oswald", sans-serif;
 	background-color: #000;
 	color: white;
 }
-.TeamsFilter .MuiFormLabel-root {
+.TeamsList .MuiFormLabel-root {
 	color: white;
 	font-family: "Oswald", sans-serif;
 }
-.TeamsFilter .MuiIconButton-root,
-.TeamsFilter .MuiTouchRipple-root {
+.TeamsList .MuiIconButton-root,
+.TeamsList .MuiTouchRipple-root {
 	color: white;
 }
-.TeamsFilter .MuiInputLabel-outlined.MuiInputLabel-shrink {
+.TeamsList .MuiInputLabel-outlined.MuiInputLabel-shrink {
 	transform: translate(16px, -22px) scale(0.75);
 	color: #000;
 	font-size: 20px;

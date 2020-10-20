@@ -7,6 +7,7 @@ import Fgm3PlayersList from "./Fgm3PlayersList";
 import FtmPlayersList from "./FtmPlayersList";
 import OrbPlayersList from "./OrbPlayersList";
 import PtsPlayersList from "./PtsPlayersList";
+
 // -----------------------------------------------
 import "./../../styles/bestPlayers.css";
 // -----------------------------------------------
@@ -18,12 +19,14 @@ const BestPlayers = () => {
 	//-----------
 	if (!team)
 		return (
-			<div className="loading-message">Waiting for team to be selected.</div>
+			<div className="loading-message">Waiting for a team to be selected.</div>
 		);
 	return (
 		<div className="BestPlayers">
 			{playersAreLoading && (
-				<div className="loading-message">Loading players infos...</div>
+				<div className="loading-message">
+					Loading players infos... <div className="loader"></div>
+				</div>
 			)}
 
 			{!statsAreLoading && (
@@ -51,6 +54,14 @@ const BestPlayers = () => {
 						<div className="col">
 							<OrbPlayersList />
 						</div>
+					</div>
+					<div>
+						<p className="stats-infos">
+							These stats are for the players from the last season's team. It
+							does not mean these players were on the same team during the
+							previous seasons. <br /> Also, the API does not have all the
+							statistics and informations about the players.
+						</p>
 					</div>
 				</div>
 			)}

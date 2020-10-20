@@ -1,9 +1,23 @@
 .BestPlayers {
 	padding: calc(var(--component-inside-padding) * 2)
 		var(--component-inside-padding);
+	border: 1px solid var(--logo-red-color);
+	border-radius: 15px;
+	/* box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28); */
+}
+
+.BestPlayers .section-title {
+	text-align: center;
 }
 
 .BestPlayers .col.strong {
 	padding-bottom: 10px;
 	border-bottom: 1px solid black;
+}
+
+.BestPlayers .stats-infos {
+	color: grey;
+	font-size: 13px;
+	font-style: italic;
+	margin-top: 20px;
 }
