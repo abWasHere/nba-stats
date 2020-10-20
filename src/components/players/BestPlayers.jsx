@@ -16,36 +16,44 @@ const BestPlayers = () => {
 	const { playersAreLoading, statsAreLoading } = useContext(PlayersContext);
 
 	//-----------
-	if ((playersAreLoading && statsAreLoading) || !team)
-		return <div>Loading players infos...</div>;
+	if (!team)
+		return (
+			<div className="loading-message">Waiting for team to be selected.</div>
+		);
 	return (
 		<div className="BestPlayers">
-			<h2 className="section-title">
-				{season} {team.full_name} best players
-			</h2>
+			{playersAreLoading && (
+				<div className="loading-message">Loading players infos...</div>
+			)}
 
-			<div className="container">
-				<div className="row">
-					<div className="col strong">Total points</div>
-					<div className="col strong">3 point field goals</div>
-					<div className="col strong">Free throws</div>
-					<div className="col strong">Offensive rebounds</div>
+			{!statsAreLoading && (
+				<div className="container">
+					<h2 className="section-title">
+						{season} {team.full_name} best players
+					</h2>
+
+					<div className="row">
+						<div className="col strong">Total points</div>
+						<div className="col strong">3 point field goals</div>
+						<div className="col strong">Free throws</div>
+						<div className="col strong">Offensive rebounds</div>
+					</div>
+					<div className="row">
+						<div className="col">
+							<PtsPlayersList />
+						</div>
+						<div className="col">
+							<Fgm3PlayersList />
+						</div>
+						<div className="col">
+							<FtmPlayersList />
+						</div>
+						<div className="col">
+							<OrbPlayersList />
+						</div>
+					</div>
 				</div>
-				<div className="row">
-					<div className="col">
-						<PtsPlayersList />
-					</div>
-					<div className="col">
-						<Fgm3PlayersList />
-					</div>
-					<div className="col">
-						<FtmPlayersList />
-					</div>
-					<div className="col">
-						<OrbPlayersList />
-					</div>
-				</div>
-			</div>
+			)}
 		</div>
 	);
 };

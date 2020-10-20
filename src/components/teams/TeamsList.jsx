@@ -4,7 +4,7 @@ import apiHandler from "./../../api/apiHandler";
 
 const TeamsList = () => {
 	const [allTeams, setAllTeams] = useState([]);
-	const [teamsAreLoading, setTeamsLoading] = useState(true);
+	const [teamsAreLoading, setTeamsLoading] = useState();
 
 	// -------------------- GET ALL TEAMS
 	useEffect(() => {

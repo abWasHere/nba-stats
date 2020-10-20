@@ -1,0 +1,13 @@
+.StatsList .rank:first-child p {
+	font-weight: 500;
+}
+.StatsList .rank-numbers {
+	color: grey;
+}
+
+.FtmPlayersList,
+.Fgm3PlayersList,
+.OrbPlayersList {
+	border-left: 1px solid var(--logo-red-color);
+	padding-left: 5px;
+}

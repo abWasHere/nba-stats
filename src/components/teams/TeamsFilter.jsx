@@ -8,11 +8,12 @@ import "./../../styles/teams.css";
 const TeamsFilter = ({ allTeams, areLoading }) => {
 	const { team, chooseTeam } = useContext(TeamContext);
 
-	if (areLoading) return <div>Loading teams infos...</div>;
+	if (areLoading)
+		return <div className="loading-message">Loading teams infos...</div>;
 	return (
 		<div className="TeamsFilter">
-			<h2 className="section-title">team</h2>
-			<div className="d-flex justify-content-between">
+			<div className="d-flex justify-content-start">
+				<h2 className="section-title">team</h2>
 				<Autocomplete
 					id="combo-box"
 					options={allTeams}
@@ -27,8 +28,13 @@ const TeamsFilter = ({ allTeams, areLoading }) => {
 				/>
 				{team && (
 					<div className="main-team-infos">
-						<p>Conference : {team.conference}</p>
-						<p>Division : {team.division}</p>
+						<p>
+							Conference :{" "}
+							<span className="team-conference">{team.conference}</span>
+						</p>
+						<p>
+							Division : <span className="team-division">{team.division}</span>
+						</p>
 					</div>
 				)}
 			</div>

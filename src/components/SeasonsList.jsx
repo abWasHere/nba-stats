@@ -13,7 +13,7 @@ const SeasonsList = () => {
 	const { chooseSeason } = useContext(SeasonContext);
 
 	return (
-		<div className="SeasonsList">
+		<div className="SeasonsList d-flex justify-content-start">
 			<h2 className="section-title">last seasons</h2>
 			<div className="d-flex justify-content-around">
 				{seasonsChoice.map((choice) => (

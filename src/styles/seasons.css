@@ -2,6 +2,11 @@
 	padding: calc(var(--component-inside-padding) * 2)
 		var(--component-inside-padding);
 }
+
+.SeasonsList .season {
+	margin-right: 50px;
+}
+
 .SeasonsList .season.btn:focus {
 	background-color: var(--logo-red-color);
 	color: #fff;

@@ -4,9 +4,13 @@
 }
 
 .TeamsList .main-team-infos {
-	margin-left: 20px;
+	margin-left: 60px;
 	border-bottom: 1px solid var(--logo-red-color);
-	text-align: end;
+}
+
+.TeamsList .team-conference,
+.team-division {
+	font-weight: 700;
 }
 
 /* Material UI style modifications */

@@ -11,7 +11,7 @@ const Header = () => {
 			<div id="nba-compact-logo">
 				<Link to="/">
 					<img
-						width="50"
+						width="40"
 						alt="NBA Logo"
 						src="./../../images/nba-compact-logo.svg"
 					/>

@@ -8,7 +8,7 @@ export const PlayersContext = createContext();
 const PlayersContextProvider = (props) => {
 	const { season } = useContext(SeasonContext);
 	const { team, setTeamMembers } = useContext(TeamContext);
-	const [playersAreLoading, setPlayersLoading] = useState(true);
+	const [playersAreLoading, setPlayersLoading] = useState();
 	const [statsAreLoading, setStatsLoading] = useState(true);
 	const [players, setPlayers] = useState([]);
 	const [stats, setStats] = useState([]);
@@ -33,14 +33,12 @@ const PlayersContextProvider = (props) => {
 						for (let res of apiRes) {
 							allData = [...allData, res.data];
 						}
-						//console.log(allData.flat());
 						setPlayers(allData.flat());
 					})
-					.then(() => setPlayersLoading(false))
 					.catch((err) => console.log(err));
 			})
-
-			.catch((err) => console.log(err));
+			.catch((err) => console.log(err))
+			.then(() => setPlayersLoading(false));
 	}, [team]);
 
 	// -------------------- GET STATS FROM EACH INDIVIDUAL PLAYER OF A TEAM
@@ -48,7 +46,7 @@ const PlayersContextProvider = (props) => {
 	useEffect(() => {
 		setStatsLoading(true);
 
-		if (team) {
+		if (team && !playersAreLoading) {
 			let teamId = team.id;
 			let playersFromTeam = players.filter(
 				(player) => player.team.id === teamId && player.height_feet !== null
@@ -75,6 +73,7 @@ const PlayersContextProvider = (props) => {
 			value={{
 				players,
 				playersAreLoading,
+				stats,
 				statsAreLoading,
 			}}
 		>
