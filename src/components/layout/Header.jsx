@@ -7,7 +7,7 @@ const Header = () => {
 	return (
 		<header className="Header">
 			<h1 className="title">NBA STATS</h1>
-			<p className="sub-title">Everything that you need to know</p>
+			<p className="sub-title">Check out the best players of the NBA</p>
 			<div id="nba-compact-logo">
 				<Link to="/">
 					<img

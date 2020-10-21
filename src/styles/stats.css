@@ -1,8 +1,8 @@
-.StatsList .rank {
+.Stats .rank {
 	padding: 5px;
 }
 
-.StatsList .rank:hover {
+.Stats .rank:hover {
 	background-color: var(--logo-blue-color);
 	color: #fff;
 	border-radius: 3px;
@@ -10,17 +10,10 @@
 	font-weight: 700;
 }
 
-.StatsList .rank:first-child p {
+.Stats .rank:first-child p {
 	font-weight: 500;
 }
 
-.StatsList .rank-numbers {
+.Stats .rank-numbers {
 	color: grey;
-}
-
-.FtmPlayersList,
-.Fgm3PlayersList,
-.OrbPlayersList {
-	/* border-left: 1px solid var(--logo-red-color); */
-	/* padding-left: 5px; */
 }

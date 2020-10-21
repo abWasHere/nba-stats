@@ -3,10 +3,7 @@ import { SeasonContext } from "./../../contexts/SeasonContext";
 import { PlayersContext } from "./../../contexts/PlayersContext";
 import { TeamContext } from "./../../contexts/TeamContext";
 
-import Fgm3PlayersList from "./Fgm3PlayersList";
-import FtmPlayersList from "./FtmPlayersList";
-import OrbPlayersList from "./OrbPlayersList";
-import PtsPlayersList from "./PtsPlayersList";
+import Stats from "./Stats";
 
 // -----------------------------------------------
 import "./../../styles/bestPlayers.css";
@@ -43,16 +40,16 @@ const BestPlayers = () => {
 					</div>
 					<div className="row">
 						<div className="col">
-							<PtsPlayersList />
+							<Stats criteria="pts" />
 						</div>
 						<div className="col">
-							<Fgm3PlayersList />
+							<Stats criteria="fg3m" />
 						</div>
 						<div className="col">
-							<FtmPlayersList />
+							<Stats criteria="ftm" />
 						</div>
 						<div className="col">
-							<OrbPlayersList />
+							<Stats criteria="oreb" />
 						</div>
 					</div>
 					<div>

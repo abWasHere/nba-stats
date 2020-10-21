@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { TeamContext } from "./../../contexts/TeamContext";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -10,7 +9,11 @@ const TeamsList = () => {
 	const { allTeams, areLoading, team, chooseTeam } = useContext(TeamContext);
 
 	if (areLoading)
-		return <div className="loading-message">Loading teams infos...</div>;
+		return (
+			<div className="loading-message">
+				<div className="loader"></div>
+			</div>
+		);
 	return (
 		<div className="TeamsList">
 			<div className="d-flex justify-content-start">

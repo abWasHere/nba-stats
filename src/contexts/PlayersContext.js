@@ -16,16 +16,18 @@ const PlayersContextProvider = (props) => {
 	const [statsAreLoading, setStatsLoading] = useState(true);
 	const [stats, setStats] = useState([]);
 
-	// -------------------- GET ALL PLAYERS
+	// --------------- GET ALL PLAYERS
 	useEffect(() => {
 		setPlayersLoading(true);
 
 		apiHandler
 			.getAllPlayersFromSeason(0)
 			.then((apiRes) => {
+				// first call to get the total pages of the API
 				let totalPages = apiRes.meta.total_pages; // FIXME: the amount of pages generates too many requests for this API.
-				let reqArr = [];
 
+				// creation of an array of requests (n times the amount of pages) to get the data from the API
+				let reqArr = [];
 				for (let page = 0; page < totalPages; page++) {
 					reqArr.push(apiHandler.getAllPlayersFromSeason(page));
 				}
@@ -44,7 +46,7 @@ const PlayersContextProvider = (props) => {
 			.then(() => setPlayersLoading(false));
 	}, []);
 
-	// -------------------- GET STATS FROM EACH INDIVIDUAL PLAYER OF A TEAM
+	// --------------- GET STATS FROM EACH INDIVIDUAL PLAYER OF A TEAM
 
 	useEffect(() => {
 		setStatsLoading(true);
@@ -69,13 +71,13 @@ const PlayersContextProvider = (props) => {
 		}
 	}, [team, season]);
 
-	// -------------------- DISPLAY ONE PLAYER PROFILE
+	// --------------- DISPLAY ONE PLAYER PROFILE
 	const displayPlayerProfile = (person) => {
 		setPlayerProfile(person);
 		console.log("player pick =", person);
 	};
 
-	// -------------------- Context Provider
+	// --------------- Context Provider
 
 	return (
 		<PlayersContext.Provider
