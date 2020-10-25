@@ -5,12 +5,13 @@ const service = axios.create({
 	baseURL: "https://www.balldontlie.io/api/v1",
 });
 
-const errorHandler = (error) => {
-	if (error.response && error.response.data) {
-		console.log(error.response.data);
+function errorHandler(error) {
+	if (error.response.data) {
+		console.log(error.response && error.response.data);
+		throw error;
 	}
 	throw error;
-};
+}
 
 export default {
 	service,
