@@ -1,6 +1,5 @@
 import axios from "axios";
 
-/* TODO: */
 const service = axios.create({
 	baseURL: "https://www.balldontlie.io/api/v1",
 });
