@@ -22,7 +22,7 @@ const Stats = ({ criteria }) => {
 			playersRank[i].specific_stats = statsRank[i][criteria].toFixed(2);
 		}
 	}
-	console.log("Players Rank =", playersRank);
+
 	//------------------------
 
 	if (statsAreLoading) return <div className="loader"></div>;
