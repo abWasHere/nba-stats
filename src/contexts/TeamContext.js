@@ -4,21 +4,28 @@ import apiHandler from "./../api/apiHandler";
 export const TeamContext = createContext();
 
 const TeamContextProvider = (props) => {
-	const [allTeams, setAllTeams] = useState([]);
+	const [allTeams, setAllTeams] = useState(
+		JSON.parse(window.localStorage.getItem("allTeams")) || []
+	);
 	const [teamsAreLoading, setTeamsLoading] = useState();
 
 	const [team, setTeam] = useState();
 	const [teamMembers, setTeamMembers] = useState();
 
 	useEffect(() => {
-		setTeamsLoading(true);
-		apiHandler
-			.getAllTeams()
-			.then((apiRes) => {
-				setAllTeams(apiRes);
-			})
-			.then(() => setTeamsLoading(false))
-			.catch((err) => console.log(err));
+		if (!JSON.parse(window.localStorage.getItem("allTeams"))) {
+			setTeamsLoading(true);
+			apiHandler
+				.getAllTeams()
+				.then((apiRes) => {
+					// setAllTeams(apiRes);
+					console.log("putting all teams in local storage");
+					window.localStorage.setItem("allTeams", JSON.stringify(apiRes));
+					setAllTeams(apiRes);
+					setTeamsLoading(false);
+				})
+				.catch((err) => console.log(err));
+		}
 	}, []);
 
 	const chooseTeam = (choice) => {
@@ -26,7 +33,7 @@ const TeamContextProvider = (props) => {
 		if (choice) console.log("team pick =", choice.city + choice.name);
 	};
 
-	// -------------------- Context Provider
+	/* --- Context Provider --- */
 
 	return (
 		<TeamContext.Provider
