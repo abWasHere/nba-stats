@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { PlayersContext } from "./../../contexts/PlayersContext";
+import { PlayersContext } from "../../contexts/PlayersContext";
 
 import "./../../styles/playerProfile.css";
 
@@ -15,10 +15,10 @@ const glossary = {
 	"F-G": "Forward-guard",
 };
 
-const PlayerProfile = () => {
-	const { playerProfile } = useContext(PlayersContext);
+const PlayerProfileModal = () => {
+	const { playerPicked } = useContext(PlayersContext);
 
-	if (!playerProfile) return <div></div>;
+	if (!playerPicked) return <div></div>;
 	return (
 		<div
 			className="modal fade"
@@ -31,21 +31,21 @@ const PlayerProfile = () => {
 				<div className="modal-content">
 					<div className="modal-header">
 						<h5 className="modal-title" id="player-modal-label">
-							{playerProfile.first_name} {playerProfile.last_name}
+							{playerPicked.first_name} {playerPicked.last_name.toUpperCase()}
 						</h5>
 					</div>
 					<div className="modal-body">
-						<p className="modal-team-name">{playerProfile.team.full_name}</p>
+						<p className="modal-team-name">{playerPicked.team.full_name}</p>
 						<p>
 							<b>Position : </b>
-							{glossary[playerProfile.position]} ({playerProfile.position})
+							{glossary[playerPicked.position]} ({playerPicked.position})
 						</p>
 						<p>
-							<b>Height : </b> {playerProfile.height_feet} feet &{" "}
-							{playerProfile.height_inches} inches
+							<b>Height : </b> {playerPicked.height_feet} feet &{" "}
+							{playerPicked.height_inches} inches
 						</p>
 						<p>
-							<b>Weight :</b> {playerProfile.weight_pounds} pounds
+							<b>Weight :</b> {playerPicked.weight_pounds} pounds
 						</p>
 					</div>
 				</div>
@@ -54,4 +54,4 @@ const PlayerProfile = () => {
 	);
 };
 
-export default PlayerProfile;
+export default PlayerProfileModal;

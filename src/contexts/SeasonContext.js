@@ -10,6 +10,8 @@ const SeasonContextProvider = (props) => {
 		console.log("season pick =", choice);
 	};
 
+	/* --- Context Provider --- */
+
 	return (
 		<SeasonContext.Provider value={{ season, chooseSeason }}>
 			{props.children}

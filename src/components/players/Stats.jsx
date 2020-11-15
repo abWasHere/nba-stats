@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import { PlayersContext } from "./../../contexts/PlayersContext";
 import { TeamContext } from "./../../contexts/TeamContext";
-import PlayerDetails from "./PlayerProfile";
+import PlayerProfileModal from "./PlayerProfileModal";
 
 import "./../../styles/stats.css";
 
+// FIXME: player profile appears after 2 clicks
+
 const Stats = ({ criteria }) => {
 	const { teamMembers } = useContext(TeamContext);
-	const { stats, statsAreLoading, displayPlayerProfile } = useContext(
+	const { stats, statsAreLoading, choosePlayer, playerPicked } = useContext(
 		PlayersContext
 	);
 
@@ -22,6 +24,7 @@ const Stats = ({ criteria }) => {
 			playersRank[i].specific_stats = statsRank[i][criteria].toFixed(2);
 		}
 	}
+
 	//------------------------
 
 	if (statsAreLoading) return <div className="loader"></div>;
@@ -44,7 +47,7 @@ const Stats = ({ criteria }) => {
 					type="button"
 					data-toggle="modal"
 					data-target="#player-modal"
-					onClick={() => displayPlayerProfile(player)}
+					onClick={() => choosePlayer(player)}
 				>
 					<p>
 						{player.first_name} {player.last_name}
@@ -52,7 +55,9 @@ const Stats = ({ criteria }) => {
 					<p className="rank-numbers">{player.specific_stats}</p>
 				</div>
 			))}
-			<PlayerDetails />
+
+			{/* Show modal with player's profile */}
+			{playerPicked && <PlayerProfileModal />}
 		</div>
 	);
 };

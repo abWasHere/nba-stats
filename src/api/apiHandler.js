@@ -16,6 +16,7 @@ export default {
 	service,
 
 	async getAllTeams() {
+		console.log("axios call to getAllTeams");
 		try {
 			const res = await service.get(`/teams`);
 			return res.data.data;
@@ -24,7 +25,8 @@ export default {
 		}
 	},
 
-	async getAllPlayersFromSeason(page) {
+	async getAllPlayersFromAPI(page) {
+		console.log("axios call to getAllPlayersFromAPI");
 		try {
 			const res = await service.get(`/players?per_page=100&page=${page}`);
 			return res.data;
@@ -34,6 +36,7 @@ export default {
 	},
 
 	async getOnePlayer(id) {
+		console.log("axios call to getOnePlayer");
 		try {
 			const res = await service.get(`/players/${id}`);
 			return res.data.data;
@@ -43,6 +46,7 @@ export default {
 	},
 
 	async getPlayersStats(year, idsQueryParam) {
+		console.log("axios call to getPlayersStats");
 		try {
 			const res = await service.get(
 				`/season_averages?season=${year}${idsQueryParam}`
