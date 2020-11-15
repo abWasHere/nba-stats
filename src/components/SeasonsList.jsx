@@ -7,24 +7,33 @@ const SeasonsList = () => {
 	//this loop returns the last 3 years seasons for display
 	let seasonsChoice = [];
 	for (let i = 3; i > 0; i--) {
-		seasonsChoice.push({ year: new Date().getFullYear() - i, id: i });
+		seasonsChoice.push(new Date().getFullYear() - i);
 	}
 
-	const { chooseSeason } = useContext(SeasonContext);
+	const { setSeason } = useContext(SeasonContext);
+	const chooseSeason = (year) => {
+		setSeason(year);
+		console.log("season pick =", year);
+	};
 
 	return (
 		<div className="SeasonsList d-flex justify-content-start">
 			<h2 className="section-title">last seasons</h2>
-			<div className="d-flex justify-content-around">
-				{seasonsChoice.map((choice) => (
-					<button
-						key={choice.id}
-						type="button"
-						className="season btn btn-outline-danger "
-						onClick={() => chooseSeason(choice.year)}
+			<div className="btn-group btn-group-toggle " data-toggle="buttons">
+				{seasonsChoice.map((year, ind) => (
+					<label
+						key={ind}
+						className="btn btn-danger season"
+						onClick={() => chooseSeason(year)}
 					>
-						{choice.year} - {choice.year + 1}
-					</button>
+						<input
+							type="radio"
+							name="season"
+							id={`${year}season`}
+							autoComplete="off"
+						/>
+						{year} <br /> {year + 1}
+					</label>
 				))}
 			</div>
 		</div>

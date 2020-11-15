@@ -3,11 +3,23 @@
 		var(--component-inside-padding);
 }
 
-.SeasonsList .season {
-	margin-right: 50px;
+.SeasonsList .btn-group-toggle {
+	width: 300px;
 }
 
-.SeasonsList .season.btn:focus {
-	background-color: var(--logo-red-color);
-	color: #fff;
+.SeasonsList .btn-group-toggle .season {
+	width: 100%;
+}
+
+.SeasonsList .btn-group-toggle .season:not(:first-child) {
+	margin-left: 5px;
+}
+
+.btn-danger:not(:disabled):not(.disabled).active,
+.btn-danger:not(:disabled):not(.disabled):active,
+.show > .btn-danger.dropdown-toggle {
+	color: #bd1f2c;
+	background-color: #fff;
+	border-color: #bd1f2c;
+	box-shadow: 1px 1px 1px #bd1f2c;
 }
