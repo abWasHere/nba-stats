@@ -7,13 +7,15 @@ export const PlayersContext = createContext();
 
 const PlayersContextProvider = (props) => {
 	const { season } = useContext(SeasonContext);
-	const { team, setTeamMembers } = useContext(TeamContext);
+	const { team } = useContext(TeamContext);
 
 	const [players, setPlayers] = useState(
 		JSON.parse(window.localStorage.getItem("players")) || []
 	);
 	const [playersAreLoading, setPlayersLoading] = useState(false);
 	const [playerPicked, setPlayerPicked] = useState(null);
+
+	const [teamMembers, setTeamMembers] = useState();
 
 	const [statsAreLoading, setStatsLoading] = useState(true);
 	const [stats, setStats] = useState();
@@ -59,9 +61,15 @@ const PlayersContextProvider = (props) => {
 
 	useEffect(() => {
 		if (players && team) {
+			// get the players from the current team
+			let teamId = team.id;
+			let playersFromTeam = players.filter(
+				(player) => player.team.id === teamId && player.height_feet !== null
+			);
+			setTeamMembers(playersFromTeam);
+
 			//define a key name for data in local storage
 			let teamStatsKey = `${season}${team.abbreviation}TeamStats`;
-			console.log("teamStatsKey", teamStatsKey);
 
 			let statsInLocalStorage = JSON.parse(
 				window.localStorage.getItem(teamStatsKey)
@@ -69,7 +77,7 @@ const PlayersContextProvider = (props) => {
 
 			//if this data exists => set state with it
 			if (statsInLocalStorage) {
-				console.log("getting stats from local storage");
+				console.log(`getting ${teamStatsKey} from local storage`);
 				setStats(statsInLocalStorage);
 				setStatsLoading(false); // => end
 
@@ -78,19 +86,11 @@ const PlayersContextProvider = (props) => {
 				setStatsLoading(true);
 
 				if (!playersAreLoading) {
-					// get the players from the current team
-					let teamId = team.id;
-					let playersFromTeam = players.filter(
-						(player) => player.team.id === teamId && player.height_feet !== null
-					);
-					setTeamMembers(playersFromTeam);
-
 					// set the request with all their IDs
 					let idsQueryParam = "";
 					for (let player of playersFromTeam) {
 						idsQueryParam += `&player_ids[]=${player.id}`;
 					}
-
 					// call the API to get the stats of the team
 					apiHandler
 						.getPlayersStats(season, idsQueryParam)
@@ -122,6 +122,8 @@ const PlayersContextProvider = (props) => {
 			value={{
 				players,
 				playersAreLoading,
+				teamMembers,
+				setTeamMembers,
 				stats,
 				statsAreLoading,
 				playerPicked,

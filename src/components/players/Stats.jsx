@@ -3,15 +3,19 @@ import { PlayersContext } from "./../../contexts/PlayersContext";
 import { TeamContext } from "./../../contexts/TeamContext";
 import PlayerProfileModal from "./PlayerProfileModal";
 
-import "./../../styles/stats.css";
-
 // FIXME: player profile appears after 2 clicks
+// -----------------------------------------------
+import "./../../styles/stats.css";
+// -----------------------------------------------
 
 const Stats = ({ criteria }) => {
-	const { teamMembers } = useContext(TeamContext);
-	const { stats, statsAreLoading, choosePlayer, playerPicked } = useContext(
-		PlayersContext
-	);
+	const {
+		teamMembers,
+		stats,
+		statsAreLoading,
+		choosePlayer,
+		playerPicked,
+	} = useContext(PlayersContext);
 
 	let playersRank = [];
 	if (stats.length > 2) {

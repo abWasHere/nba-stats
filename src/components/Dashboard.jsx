@@ -4,9 +4,10 @@ import PlayersContextProvider from "./../contexts/PlayersContext";
 import TeamContextProvider from "./../contexts/TeamContext";
 import SeasonsList from "./../components/SeasonsList";
 import TeamsList from "./teams/TeamsList";
+import BestPlayers from "./players/BestPlayers";
+import TeamGames from "./teams/TeamGames";
 
 import "./../styles/dashboard.css";
-import BestPlayers from "./players/BestPlayers";
 
 const Dashboard = () => {
 	return (
@@ -17,6 +18,7 @@ const Dashboard = () => {
 					<TeamsList />
 					<PlayersContextProvider>
 						<BestPlayers />
+						<TeamGames />
 					</PlayersContextProvider>
 				</TeamContextProvider>
 			</SeasonContextProvider>

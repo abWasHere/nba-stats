@@ -10,7 +10,7 @@ const TeamContextProvider = (props) => {
 	const [teamsAreLoading, setTeamsLoading] = useState();
 
 	const [team, setTeam] = useState();
-	const [teamMembers, setTeamMembers] = useState();
+	//const [teamMembers, setTeamMembers] = useState();
 
 	useEffect(() => {
 		if (!JSON.parse(window.localStorage.getItem("allTeams"))) {
@@ -42,8 +42,8 @@ const TeamContextProvider = (props) => {
 				teamsAreLoading,
 				team,
 				chooseTeam,
-				teamMembers,
-				setTeamMembers,
+				// teamMembers,
+				// setTeamMembers,
 			}}
 		>
 			{props.children}
