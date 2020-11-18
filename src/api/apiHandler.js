@@ -56,31 +56,16 @@ export default {
 			errorHandler(error);
 		}
 	},
-	// getAllTeams() {
-	// 	return service
-	// 		.get(`/teams`)
-	// 		.then((res) => res.data.data)
-	// 		.catch(errorHandler);
-	// },
 
-	// getAllPlayersFromSeason(page) {
-	// 	return service
-	// 		.get(`/players?per_page=100&page=${page}`)
-	// 		.then((res) => res.data)
-	// 		.catch(errorHandler);
-	// },
-
-	// getOnePlayer(id) {
-	// 	return service
-	// 		.get(`/players/${id}`)
-	// 		.then((res) => res.data.data)
-	// 		.catch(errorHandler);
-	// },
-
-	// getPlayersStats(year, idsQueryParam) {
-	// 	return service
-	// 		.get(`/season_averages?season=${year}${idsQueryParam}`)
-	// 		.then((res) => res.data.data)
-	// 		.catch(errorHandler);
-	// },
+	async getAllGamesOfTeam(year, teamId, page = 0) {
+		console.log("axios call to getAllGames");
+		try {
+			const res = await service.get(
+				`/games?seasons[]=${year}&team_ids[]=${teamId}&per_page=100&page=${page}`
+			);
+			return res.data;
+		} catch (error) {
+			errorHandler(error);
+		}
+	},
 };

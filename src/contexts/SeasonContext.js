@@ -5,11 +5,6 @@ export const SeasonContext = createContext();
 const SeasonContextProvider = (props) => {
 	const [season, setSeason] = useState(2019);
 
-	// const selectSeason = (choice) => {
-	// 	setSeason(choice);
-	// 	console.log("season pick =", choice);
-	// };
-
 	/* --- Context Provider --- */
 
 	return (

@@ -8,9 +8,7 @@ const TeamContextProvider = (props) => {
 		JSON.parse(window.localStorage.getItem("allTeams")) || []
 	);
 	const [teamsAreLoading, setTeamsLoading] = useState();
-
 	const [team, setTeam] = useState();
-	//const [teamMembers, setTeamMembers] = useState();
 
 	useEffect(() => {
 		if (!JSON.parse(window.localStorage.getItem("allTeams"))) {
@@ -18,8 +16,7 @@ const TeamContextProvider = (props) => {
 			apiHandler
 				.getAllTeams()
 				.then((apiRes) => {
-					// setAllTeams(apiRes);
-					console.log("putting all teams in local storage");
+					console.log("putting ALL TEAMS in local storage");
 					window.localStorage.setItem("allTeams", JSON.stringify(apiRes));
 					setAllTeams(apiRes);
 					setTeamsLoading(false);
@@ -30,7 +27,7 @@ const TeamContextProvider = (props) => {
 
 	const chooseTeam = (choice) => {
 		setTeam(choice);
-		if (choice) console.log("team pick =", choice.city + choice.name);
+		console.log("team pick =", choice.city + choice.name);
 	};
 
 	/* --- Context Provider --- */
@@ -42,8 +39,6 @@ const TeamContextProvider = (props) => {
 				teamsAreLoading,
 				team,
 				chooseTeam,
-				// teamMembers,
-				// setTeamMembers,
 			}}
 		>
 			{props.children}

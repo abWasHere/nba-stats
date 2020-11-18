@@ -3,21 +3,47 @@
 		var(--component-inside-padding);
 	border: 1px solid var(--logo-blue-color);
 	border-radius: 15px;
-	/* box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28); */
+}
+
+.TeamGames .container:last-of-type {
+	max-height: 300px;
+	overflow-y: scroll;
 }
 
 .TeamGames .section-title {
 	text-align: center;
 }
 
-.TeamGames .col.strong {
-	padding-bottom: 10px;
-	border-bottom: 1px solid black;
+.TeamGames .row.headers {
+	padding: 10px 0;
 }
 
-.TeamGames .stats-infos {
-	color: grey;
-	font-size: 13px;
-	font-style: italic;
-	margin-top: 20px;
+.TeamGames .row.headers p {
+	padding: 10px 0;
+}
+
+.TeamGames .games-totals {
+	width: 100%;
+	padding: 15px 0;
+	background-color: var(--logo-blue-color);
+	color: white;
+}
+
+.TeamGames .games-totals p {
+	margin: 0px 15px;
+}
+
+.TeamGames .container .row:first-of-type {
+	border-top: 1px solid black;
+}
+
+.TeamGames .container .row:not(.headers):hover {
+	background-color: var(--logo-blue-color);
+	color: greenyellow;
+	border-radius: 3px;
+	font-weight: 700;
+}
+
+.TeamGames .col {
+	min-width: fit-content;
 }

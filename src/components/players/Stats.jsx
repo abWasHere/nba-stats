@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { PlayersContext } from "./../../contexts/PlayersContext";
-import { TeamContext } from "./../../contexts/TeamContext";
 import PlayerProfileModal from "./PlayerProfileModal";
 
 // FIXME: player profile appears after 2 clicks

@@ -5,6 +5,7 @@
 
 .Dashboard .TeamsList,
 .SeasonsList,
-.BestPlayers {
+.BestPlayers,
+.TeamGames {
 	margin-bottom: 20px;
 }

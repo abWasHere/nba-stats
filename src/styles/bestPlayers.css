@@ -10,7 +10,7 @@
 	text-align: center;
 }
 
-.BestPlayers .col.strong {
+.BestPlayers .row:first-of-type {
 	padding-bottom: 10px;
 	border-bottom: 1px solid black;
 }

@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&display=swap");
 
-/* NBA LOGO COLORS */
+/* NBA logo colors */
 :root {
-	/* --footer-height: 10vh; */
 	--logo-blue-color: #17408b;
 	--logo-red-color: #c9082a;
 	--component-inside-padding: 10px;
@@ -13,6 +12,11 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: "Oswald", sans-serif;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 body {
@@ -28,15 +32,18 @@ body {
 	position: relative;
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
+/* Text */
+p {
+	margin: 0;
+	font-weight: 300;
 }
 
+.strong {
+	font-weight: 500;
+}
 ul {
 	list-style: none;
 }
-
 .title {
 	font-weight: 700;
 }
@@ -51,6 +58,20 @@ ul {
 	min-width: 150px;
 }
 
+/* Displays */
+.flex {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.sp-btw {
+	justify-content: space-between;
+}
+.sp-center {
+	justify-content: center;
+}
+
+/* Effects */
 .loading-message {
 	padding: var(--component-inside-padding);
 	text-align: left;
@@ -77,7 +98,16 @@ ul {
 	}
 }
 
-p {
-	margin: 0;
-	font-weight: 300;
+/* Scrollbars */
+::-webkit-scrollbar {
+	width: 12px;
+}
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }

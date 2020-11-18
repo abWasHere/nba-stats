@@ -31,21 +31,27 @@ const PlayersContextProvider = (props) => {
 				const apiRes1 = await apiHandler.getAllPlayersFromAPI(0);
 				let totalPages = apiRes1.meta.total_pages; // FIXME: the amount of pages generates too many requests for this API.
 
-				// creation of an array of requests (n times the amount of pages) to get the data from the API
-				let reqArr = [];
-				for (let page = 0; page < totalPages; page++) {
-					reqArr.push(apiHandler.getAllPlayersFromAPI(page));
-				}
+				let allData = []; // will hold API res.data
 
-				// call API with all requests
-				const apiRes2 = await Promise.all(reqArr);
-				let allData = [];
-				for (let res of apiRes2) {
-					allData = [...allData, res.data];
+				if (totalPages === 1) {
+					allData = apiRes1.data;
+				} else {
+					// creation of an array of requests (n times the amount of pages) to get the data from the API
+					let reqArr = [];
+					for (let page = 0; page < totalPages; page++) {
+						reqArr.push(apiHandler.getAllPlayersFromAPI(page));
+					}
+
+					// call API with all requests
+					const apiRes2 = await Promise.all(reqArr);
+
+					for (let res of apiRes2) {
+						allData = [...allData, res.data];
+					}
 				}
 
 				// put players from API in local storage and in state
-				console.log("putting players from API in local storage");
+				console.log("putting PLAYERS from API in local storage");
 				window.localStorage.setItem("players", JSON.stringify(allData.flat()));
 				setPlayers(allData.flat());
 				setPlayersLoading(false); // => end
@@ -61,6 +67,8 @@ const PlayersContextProvider = (props) => {
 
 	useEffect(() => {
 		if (players && team) {
+			setStatsLoading(true);
+
 			// get the players from the current team
 			let teamId = team.id;
 			let playersFromTeam = players.filter(
@@ -83,8 +91,6 @@ const PlayersContextProvider = (props) => {
 
 				//else : if nothing in local storage call the API to get the data
 			} else {
-				setStatsLoading(true);
-
 				if (!playersAreLoading) {
 					// set the request with all their IDs
 					let idsQueryParam = "";
@@ -95,6 +101,7 @@ const PlayersContextProvider = (props) => {
 					apiHandler
 						.getPlayersStats(season, idsQueryParam)
 						.then((dbRes) => {
+							console.log("putting TEAM STATS in local storage");
 							window.localStorage.setItem(teamStatsKey, JSON.stringify(dbRes));
 							setStats(dbRes);
 							setStatsLoading(false); // => end
