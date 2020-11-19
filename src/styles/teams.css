@@ -4,7 +4,8 @@
 }
 
 .TeamsList .main-team-infos {
-	margin-left: 5%;
+	flex-grow: 1;
+	margin-left: 25px;
 	border-bottom: 1px solid var(--logo-blue-color);
 	align-items: flex-start;
 }
@@ -28,4 +29,9 @@
 .TeamsList .MuiFormLabel-root {
 	font-family: "Oswald", sans-serif;
 	color: grey;
+}
+
+.TeamsList
+	.MuiAutocomplete-root.MuiAutocomplete-hasClearIcon.MuiAutocomplete-hasPopupIcon {
+	max-width: 250px;
 }

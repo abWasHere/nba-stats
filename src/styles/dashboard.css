@@ -1,18 +1,23 @@
 .Dashboard {
-	min-height: 100%;
-	padding: 30px 12%;
+	min-height: 50%;
+	padding: 30px;
 }
 
 .Dashboard .TeamsList,
 .SeasonsList,
 .BestPlayers,
 .TeamGames {
-	margin-bottom: 20px;
-	min-width: 750px;
+	margin: 0 auto 25px;
+	width: 80%;
+	min-width: 700px;
+}
+
+.TeamGames {
+	margin-bottom: 50px;
 }
 
 @media (min-width: 576px) {
 	.container {
-		max-width: 750px;
+		max-width: 700px;
 	}
 }

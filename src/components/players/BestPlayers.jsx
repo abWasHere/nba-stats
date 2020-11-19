@@ -15,9 +15,7 @@ const BestPlayers = () => {
 
 	//-----------
 	if (!team)
-		return (
-			<div className="loading-message">Waiting for a team to be selected.</div>
-		);
+		return <div className="loading-message">Please select a team.</div>;
 	return (
 		<div className="BestPlayers">
 			{playersAreLoading && (
@@ -33,22 +31,22 @@ const BestPlayers = () => {
 					</h2>
 
 					<div className="row">
-						<div className="col strong">Total points</div>
-						<div className="col strong">3 point field goals</div>
-						<div className="col strong">Free throws</div>
-						<div className="col strong">Offensive rebounds</div>
+						<div className="col-3 strong">Total points</div>
+						<div className="col-3 strong">3 point field goals</div>
+						<div className="col-3 strong">Free throws</div>
+						<div className="col-3 strong">Offensive rebounds</div>
 					</div>
 					<div className="row">
-						<div className="col">
+						<div className="col-3">
 							<Stats criteria="pts" />
 						</div>
-						<div className="col">
+						<div className="col-3">
 							<Stats criteria="fg3m" />
 						</div>
-						<div className="col">
+						<div className="col-3">
 							<Stats criteria="ftm" />
 						</div>
-						<div className="col">
+						<div className="col-3">
 							<Stats criteria="oreb" />
 						</div>
 					</div>

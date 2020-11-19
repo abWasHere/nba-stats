@@ -159,7 +159,6 @@ const TeamGames = () => {
 					<div className="container">
 						<div className="games-totals flex sp-center">
 							<p>
-								{" "}
 								<b>{games.allGames.length}</b> GAMES
 							</p>
 							<p>
@@ -184,8 +183,8 @@ const TeamGames = () => {
 							</p>
 						</div>
 						<div className="row headers">
-							<div className="col strong">Date</div>
-							<div className="col strong">Opponent</div>
+							<div className="col-3 strong">Date</div>
+							<div className="col-4 strong">Opponent</div>
 							<div className="col-2 strong">Home</div>
 							<div className="col-2 strong">Visitor</div>
 						</div>
@@ -194,19 +193,18 @@ const TeamGames = () => {
 					<div className="container">
 						{games.allGames.map((game, ind) => (
 							<div className="row" key={ind}>
-								<div className="col game-date">
-									{/* <p>{game.date.slice(0, 10).replace(/-/g, " ")}</p> */}
+								<div className="col-3 game-date">
 									<p>{game.date}</p>
 								</div>
 								{/* if team is at home */}
 								{game.home_team.id === team.id && (
-									<div className="col game-opponent">
+									<div className="col-4 game-opponent">
 										<p>{game.visitor_team.full_name}</p>
 									</div>
 								)}
 								{/* if team is the visitor */}
 								{game.visitor_team.id === team.id && (
-									<div className="col game-opponent">
+									<div className="col-4 game-opponent">
 										<p>{game.home_team.full_name}</p>
 									</div>
 								)}

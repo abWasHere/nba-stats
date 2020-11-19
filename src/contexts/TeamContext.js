@@ -27,7 +27,7 @@ const TeamContextProvider = (props) => {
 
 	const chooseTeam = (choice) => {
 		setTeam(choice);
-		console.log("team pick =", choice.city + choice.name);
+		if (choice) console.log("team pick =", choice.city + choice.name);
 	};
 
 	/* --- Context Provider --- */

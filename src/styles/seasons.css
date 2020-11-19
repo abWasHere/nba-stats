@@ -4,7 +4,7 @@
 }
 
 .SeasonsList .btn-group-toggle {
-	width: 300px;
+	flex-grow: 1;
 }
 
 .SeasonsList .btn-group-toggle .season {
@@ -12,7 +12,7 @@
 }
 
 .SeasonsList .btn-group-toggle .season:not(:first-child) {
-	margin-left: 5px;
+	margin-left: 25px;
 }
 
 .btn-danger:not(:disabled):not(.disabled).active,

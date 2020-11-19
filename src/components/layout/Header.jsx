@@ -7,15 +7,13 @@ const Header = () => {
 	return (
 		<header className="Header">
 			<h1 className="title">NBA STATS</h1>
-			<p className="sub-title">Check out the best players of the NBA</p>
+			<p className="sub-title">Check out last seasons stats</p>
 			<div id="nba-compact-logo">
-				{/* <Link to="/"> */}
 				<img
 					width="40"
 					alt="NBA Logo"
 					src="./../../images/nba-compact-logo.svg"
 				/>
-				{/* </Link> */}
 			</div>
 		</header>
 	);

@@ -5,6 +5,10 @@
 	border-radius: 15px;
 }
 
+.TeamGames .container {
+	width: 550px;
+}
+
 .TeamGames .container:last-of-type {
 	max-height: 300px;
 	overflow-y: scroll;
@@ -16,6 +20,7 @@
 
 .TeamGames .row.headers {
 	padding: 10px 0;
+	padding-right: var(--chart-scrollbar-width);
 }
 
 .TeamGames .row.headers p {
@@ -45,5 +50,10 @@
 }
 
 .TeamGames .col {
-	min-width: fit-content;
+	min-width: 150px;
+}
+
+.TeamGames .container .row .col:first-of-type,
+.TeamGames .container .row .col:first-of-type p {
+	width: 200px;
 }

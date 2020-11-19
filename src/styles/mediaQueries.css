@@ -1,0 +1,68 @@
+@media (max-width: 600px) {
+	.Header {
+		position: relative;
+	}
+	.Header .title {
+		font-size: 25px;
+	}
+
+	.Header .sub-title {
+		font-size: 14px;
+	}
+
+	.Header #nba-compact-logo {
+		position: absolute;
+		top: 0;
+		left: 20px;
+	}
+
+	.Header #nba-compact-logo img {
+		width: 33px;
+		margin: 0;
+	}
+
+	.Dashboard {
+		overflow-x: scroll;
+	}
+
+	.SeasonsList.d-flex.justify-content-start,
+	.TeamsList > div,
+	.TeamsList > div > div.main-team-infos.d-flex.justify-content-between {
+		flex-direction: column;
+		margin-bottom: 0px;
+	}
+
+	.SeasonsList label.btn.btn-danger.season {
+		width: 100px;
+		margin: 0;
+	}
+
+	.TeamsList > div {
+		width: 50%;
+	}
+
+	.TeamsList .team-name {
+		margin-top: 10px;
+	}
+
+	.TeamsList .team-conference {
+		margin: 10px 0;
+	}
+
+	.TeamsList > div .main-team-infos {
+		margin: 15px 0 0;
+		border-bottom: none;
+	}
+}
+
+@media (min-width: 576px) {
+	.container {
+		max-width: 790px;
+	}
+}
+
+@media (min-width: 780px) {
+	html {
+		overflow-x: hidden;
+	}
+}
