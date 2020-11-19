@@ -6,6 +6,22 @@ import apiHandler from "./../../api/apiHandler";
 import "./../../styles/teamGames.css";
 // -----------------------------------------------
 
+function sortArrayByDates(array) {
+	const formattedArr = array.map((game) => {
+		let formattedDate = game["date"].slice(0, 10);
+		return { ...game, ["date"]: formattedDate };
+	});
+
+	function dateToNum(d) {
+		// Convert "YYYY-MM-DD" (string date) to YYYYMMDD (number)
+		d = d.split("-");
+		return Number(d[0] + d[1] + d[2]);
+	}
+	return formattedArr.sort(function (a, b) {
+		return dateToNum(b["date"]) - dateToNum(a["date"]);
+	});
+}
+
 const TeamGames = () => {
 	const { season } = useContext(SeasonContext);
 	const { team } = useContext(TeamContext);
@@ -48,10 +64,12 @@ const TeamGames = () => {
 						}
 					}
 
+					const sortedData = await sortArrayByDates(allData);
+
 					console.log("putting GAMES from API in local storage");
-					window.localStorage.setItem(gamesKey, JSON.stringify(allData));
+					window.localStorage.setItem(gamesKey, JSON.stringify(sortedData));
 					setGames({
-						allGames: allData,
+						allGames: sortedData,
 						areLoading: false,
 					}); // => end
 				} catch (error) {
@@ -177,7 +195,8 @@ const TeamGames = () => {
 						{games.allGames.map((game, ind) => (
 							<div className="row" key={ind}>
 								<div className="col game-date">
-									<p>{game.date.slice(0, 10).replace(/-/g, " ")}</p>
+									{/* <p>{game.date.slice(0, 10).replace(/-/g, " ")}</p> */}
+									<p>{game.date}</p>
 								</div>
 								{/* if team is at home */}
 								{game.home_team.id === team.id && (
