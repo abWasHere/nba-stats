@@ -3,32 +3,18 @@
 		var(--component-inside-padding);
 }
 
-.TeamsList .main-team-infos {
-	flex-grow: 1;
-	margin-left: 25px;
-	border-bottom: 1px solid var(--logo-blue-color);
-	align-items: flex-start;
-}
-
-.TeamsList .team-name {
-	font-size: 29px;
-	text-transform: uppercase;
-	margin-right: 2%;
-	line-height: 26px;
-}
-
 .TeamsList .team-conference {
-	min-width: fit-content;
-}
-.TeamsList .team-conference-content {
-	font-weight: 700;
+	text-align: left;
+	margin-left: calc(var(--section-titles-width) + 15px);
+	margin-top: 15px;
+	font-size: 19px;
 }
 
 /* Material UI style modifications */
 .TeamsList .MuiAutocomplete-inputRoot,
 .TeamsList .MuiFormLabel-root {
 	font-family: "Oswald", sans-serif;
-	color: grey;
+	color: #fff;
 }
 
 .TeamsList

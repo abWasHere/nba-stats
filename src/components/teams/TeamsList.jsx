@@ -2,18 +2,17 @@ import React, { useContext } from "react";
 import { TeamContext } from "./../../contexts/TeamContext";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-
+import Logo from "./Logo";
+//--------------------------------
 import "./../../styles/teams.css";
+//--------------------------------
 
 const TeamsList = () => {
-	const { allTeams, areLoading, team, chooseTeam } = useContext(TeamContext);
+	const { allTeams, teamsAreLoading, team, chooseTeam } = useContext(
+		TeamContext
+	);
 
-	if (areLoading)
-		return (
-			<div className="loading-message">
-				<div className="loader"></div>
-			</div>
-		);
+	if (teamsAreLoading) return <div className="loader"></div>;
 	return (
 		<div className="TeamsList">
 			<div className="d-flex justify-content-start">
@@ -27,19 +26,19 @@ const TeamsList = () => {
 						<TextField {...params} label="Select a team" variant="outlined" />
 					)}
 					onChange={(event, newValue) => {
+						// event argument is mandatory!
 						chooseTeam(newValue);
 					}}
 				/>
-				{team && (
-					<div className="main-team-infos d-flex justify-content-between">
-						<div className="team-name">{team.full_name}</div>
-						<div className="team-conference">
-							<p>Conference </p>
-							<p className="team-conference-content">{team.conference}</p>
-						</div>
-					</div>
-				)}
+				{team && <Logo teamAbbreviation={team.abbreviation} />}
 			</div>
+			{team && (
+				<div className="team-conference">
+					<p>
+						<b>{team.conference}</b> Conference
+					</p>
+				</div>
+			)}
 		</div>
 	);
 };

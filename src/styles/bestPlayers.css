@@ -1,6 +1,5 @@
 .BestPlayers {
-	padding: calc(var(--component-inside-padding) * 2)
-		var(--component-inside-padding);
+	padding: 25px;
 	border: 1px solid var(--logo-red-color);
 	border-radius: 15px;
 }
@@ -11,7 +10,7 @@
 
 .BestPlayers .row:first-of-type {
 	padding-bottom: 10px;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid var(--logo-red-color);
 }
 
 .BestPlayers .stats-infos {

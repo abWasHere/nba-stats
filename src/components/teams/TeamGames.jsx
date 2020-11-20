@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { SeasonContext } from "./../../contexts/SeasonContext";
 import { TeamContext } from "./../../contexts/TeamContext";
 import apiHandler from "./../../api/apiHandler";
+import Logo from "./Logo";
 // -----------------------------------------------
 import "./../../styles/teamGames.css";
 // -----------------------------------------------
@@ -87,60 +88,84 @@ const TeamGames = () => {
 		}
 	}, [season, team]);
 
-	/*  */
+	/* --- Statistic Functions --- */
 
-	const highlightScores = (homeScore, visitorScore, homeTeam, visitorTeam) => {
+	const displayScores = (
+		homeScore,
+		visitorScore,
+		homeTeamAbb,
+		visitorTeamAbb
+	) => {
 		return homeScore >= visitorScore ? (
 			<>
-				<div className="col-2 game-score ">
+				<div className="col-2 game-score flex sp-center ">
+					<Logo teamAbbreviation={homeTeamAbb} />
 					<p className="strong">
-						{homeTeam} {homeScore}
+						{homeTeamAbb} {homeScore}
 					</p>
 				</div>
 
-				<div className="col-2 game-score">
+				<div className="col-2 game-score flex sp-center">
+					<Logo teamAbbreviation={visitorTeamAbb} />
 					<p>
-						{visitorTeam} {visitorScore}
+						{visitorTeamAbb} {visitorScore}
 					</p>
 				</div>
 			</>
 		) : (
 			<>
-				<div className="col-2 game-score ">
+				<div className="col-2 game-score flex sp-center ">
+					<Logo teamAbbreviation={homeTeamAbb} />
 					<p>
-						{homeTeam} {homeScore}
+						{homeTeamAbb} {homeScore}
 					</p>
 				</div>
 
-				<div className="col-2 game-score">
+				<div className="col-2 game-score flex sp-center">
+					<Logo teamAbbreviation={visitorTeamAbb} />
 					<p className="strong">
-						{visitorTeam} {visitorScore}
+						{visitorTeamAbb} {visitorScore}
 					</p>
 				</div>
 			</>
 		);
 	};
 
-	const calcWins = (theGames) => {
-		if (team && season)
-			return theGames.filter(
+	const getGameStats = (theGames) => {
+		if (team && season) {
+			let wins = theGames.filter(
 				(game) =>
 					(game["home_team"]["id"] === team.id &&
 						game["home_team_score"] > game["visitor_team_score"]) ||
 					(game["visitor_team"]["id"] === team.id &&
 						game["visitor_team_score"] > game["home_team_score"])
 			).length;
-	};
 
-	const calcDefeats = (theGames) => {
-		if (team && season) return theGames.length - calcWins(theGames);
-	};
+			let losses = theGames.length - wins;
 
-	const calcDraws = (theGames) => {
-		if (team && season)
-			return theGames.filter(
+			let draws = theGames.filter(
 				(game) => game["home_team_score"] === game["visitor_team_score"]
 			).length;
+
+			let ptsMarked = theGames.reduce(
+				(acc, val) =>
+					val["home_team"]["id"] === team.id
+						? acc + val["home_team_score"]
+						: acc + val["visitor_team_score"],
+				0
+			);
+			let ptsConceided = theGames.reduce(
+				(acc, val) =>
+					val["home_team"]["id"] === team.id
+						? acc + val["visitor_team_score"]
+						: acc + val["home_team_score"],
+				0
+			);
+
+			return { wins, losses, draws, ptsMarked, ptsConceided };
+		} else {
+			return { wins: 0, losses: 0, draws: 0, ptsMarked: 0, ptsConceided: 0 };
+		}
 	};
 
 	/* --- Render --- */
@@ -153,7 +178,9 @@ const TeamGames = () => {
 			) : (
 				<>
 					<h2 className="section-title">
-						{season} {team.full_name} games
+						{team.full_name}
+						<br />
+						{season} Games
 					</h2>
 
 					<div className="container">
@@ -162,26 +189,36 @@ const TeamGames = () => {
 								<b>{games.allGames.length}</b> GAMES
 							</p>
 							<p>
-								<b>{calcWins(games.allGames)}</b> WINS{" "}
+								<b>{getGameStats(games.allGames).wins}</b> WINS
 							</p>
 							<p>
 								<b>
 									{(
-										(calcWins(games.allGames) * 100) /
+										(getGameStats(games.allGames).wins * 100) /
 										games.allGames.length
 									).toFixed(1)}{" "}
-									%{" "}
+									%
 								</b>
 								WINS
 							</p>
 							<p>
-								<b>{calcDefeats(games.allGames)}</b> DEFEATS
+								<b>{getGameStats(games.allGames).losses}</b> LOSSES
 							</p>
 
 							<p>
-								<b>{calcDraws(games.allGames)}</b> DRAWS
+								<b>{getGameStats(games.allGames).draws}</b> DRAWS
 							</p>
+							<div className="flex-col">
+								<p>
+									<b>{getGameStats(games.allGames).ptsMarked}</b> POINTS MARKED
+								</p>
+								<p>
+									<b>{getGameStats(games.allGames).ptsConceided}</b> POINTS
+									CONCEDED
+								</p>
+							</div>
 						</div>
+
 						<div className="row headers">
 							<div className="col-3 strong">Date</div>
 							<div className="col-4 strong">Opponent</div>
@@ -209,7 +246,7 @@ const TeamGames = () => {
 									</div>
 								)}
 								<>
-									{highlightScores(
+									{displayScores(
 										game.home_team_score,
 										game.visitor_team_score,
 										game.home_team.abbreviation,

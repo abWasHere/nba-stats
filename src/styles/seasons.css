@@ -8,7 +8,7 @@
 }
 
 .SeasonsList .btn-group-toggle .season {
-	width: 100%;
+	width: 90%;
 }
 
 .SeasonsList .btn-group-toggle .season:not(:first-child) {

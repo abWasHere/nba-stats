@@ -1,9 +1,10 @@
-@media (max-width: 600px) {
+@media (max-width: 667px) {
 	.Header {
 		position: relative;
+		min-height: 8vh !important;
 	}
 	.Header .title {
-		font-size: 25px;
+		font-size: 38px;
 	}
 
 	.Header .sub-title {
@@ -17,17 +18,21 @@
 	}
 
 	.Header #nba-compact-logo img {
-		width: 33px;
+		width: 60px;
 		margin: 0;
 	}
 
 	.Dashboard {
 		overflow-x: scroll;
+		padding: 10px 15px !important;
+	}
+
+	.container {
+		min-width: 580px;
 	}
 
 	.SeasonsList.d-flex.justify-content-start,
-	.TeamsList > div,
-	.TeamsList > div > div.main-team-infos.d-flex.justify-content-between {
+	.TeamsList > div {
 		flex-direction: column;
 		margin-bottom: 0px;
 	}
@@ -41,28 +46,27 @@
 		width: 50%;
 	}
 
-	.TeamsList .team-name {
-		margin-top: 10px;
-	}
-
 	.TeamsList .team-conference {
-		margin: 10px 0;
+		margin-top: 15px;
+		margin-left: 15px !important;
 	}
 
-	.TeamsList > div .main-team-infos {
-		margin: 15px 0 0;
-		border-bottom: none;
-	}
-}
-
-@media (min-width: 576px) {
-	.container {
-		max-width: 790px;
+	.TeamsList .Logo {
+		width: 140px !important;
+		margin: 0 !important;
+		float: unset !important;
+		position: absolute;
+		right: 21% !important;
+		top: 15% !important;
 	}
 }
 
 @media (min-width: 780px) {
 	html {
 		overflow-x: hidden;
+	}
+
+	.container {
+		min-width: 700px;
 	}
 }

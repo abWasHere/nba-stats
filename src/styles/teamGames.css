@@ -1,7 +1,6 @@
 .TeamGames {
-	padding: calc(var(--component-inside-padding) * 2)
-		var(--component-inside-padding);
-	border: 1px solid var(--logo-blue-color);
+	padding: 25px;
+	border: 1px solid #fff;
 	border-radius: 15px;
 }
 
@@ -18,33 +17,36 @@
 	text-align: center;
 }
 
-.TeamGames .row.headers {
-	padding: 10px 0;
-	padding-right: var(--chart-scrollbar-width);
-}
-
-.TeamGames .row.headers p {
-	padding: 10px 0;
-}
-
 .TeamGames .games-totals {
 	width: 100%;
 	padding: 15px 0;
-	background-color: var(--logo-blue-color);
-	color: white;
+	color: var(--logo-blue-color);
+	background-color: #fff;
+	box-shadow: 1px 1px 2px black;
+	border-radius: 5px;
 }
 
 .TeamGames .games-totals p {
 	margin: 0px 15px;
 }
 
-.TeamGames .container .row:first-of-type {
-	border-top: 1px solid black;
+.TeamGames .row {
+	padding: 3px 0;
+}
+
+.TeamGames .row.headers {
+	padding: 10px 0;
+	padding-right: var(--chart-scrollbar-width);
+	border-bottom: 1px solid #fff;
+}
+
+.TeamGames .row.headers p {
+	padding: 10px 0;
 }
 
 .TeamGames .container .row:not(.headers):hover {
-	background-color: var(--logo-blue-color);
-	color: greenyellow;
+	color: var(--logo-blue-color);
+	background-color: rgb(148, 216, 46);
 	border-radius: 3px;
 	font-weight: 700;
 }

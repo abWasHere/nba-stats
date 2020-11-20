@@ -1,23 +1,23 @@
 .Dashboard {
-	min-height: 50%;
-	padding: 30px;
+	min-height: var(--dashboard-height); /* defined in index.css */
+	min-width: fit-content;
+	padding: 50px 15%;
+	background-color: var(--logo-blue-color);
 }
 
-.Dashboard .TeamsList,
-.SeasonsList,
+.Dashboard .SeasonsList,
 .BestPlayers,
 .TeamGames {
 	margin: 0 auto 25px;
-	width: 80%;
-	min-width: 700px;
+	color: whitesmoke;
+}
+
+.Dashboard .TeamsList {
+	margin: auto;
+	position: relative;
+	color: whitesmoke;
 }
 
 .TeamGames {
 	margin-bottom: 50px;
-}
-
-@media (min-width: 576px) {
-	.container {
-		max-width: 700px;
-	}
 }

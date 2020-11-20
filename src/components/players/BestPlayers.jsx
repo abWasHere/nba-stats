@@ -27,7 +27,8 @@ const BestPlayers = () => {
 			{!statsAreLoading && (
 				<div className="container">
 					<h2 className="section-title">
-						{season} {team.full_name} best players
+						{team.full_name} <br />
+						{season} Best Players
 					</h2>
 
 					<div className="row">
