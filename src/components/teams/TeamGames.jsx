@@ -3,6 +3,7 @@ import { SeasonContext } from "./../../contexts/SeasonContext";
 import { TeamContext } from "./../../contexts/TeamContext";
 import apiHandler from "./../../api/apiHandler";
 import Logo from "./Logo";
+import TeamStats from "./TeamStats";
 // -----------------------------------------------
 import "./../../styles/teamGames.css";
 // -----------------------------------------------
@@ -88,7 +89,7 @@ const TeamGames = () => {
 		}
 	}, [season, team]);
 
-	/* --- Statistic Functions --- */
+	/* --- Functions --- */
 
 	const displayScores = (
 		homeScore,
@@ -131,43 +132,6 @@ const TeamGames = () => {
 		);
 	};
 
-	const getGameStats = (theGames) => {
-		if (team && season) {
-			let wins = theGames.filter(
-				(game) =>
-					(game["home_team"]["id"] === team.id &&
-						game["home_team_score"] > game["visitor_team_score"]) ||
-					(game["visitor_team"]["id"] === team.id &&
-						game["visitor_team_score"] > game["home_team_score"])
-			).length;
-
-			let losses = theGames.length - wins;
-
-			let draws = theGames.filter(
-				(game) => game["home_team_score"] === game["visitor_team_score"]
-			).length;
-
-			let ptsMarked = theGames.reduce(
-				(acc, val) =>
-					val["home_team"]["id"] === team.id
-						? acc + val["home_team_score"]
-						: acc + val["visitor_team_score"],
-				0
-			);
-			let ptsConceided = theGames.reduce(
-				(acc, val) =>
-					val["home_team"]["id"] === team.id
-						? acc + val["visitor_team_score"]
-						: acc + val["home_team_score"],
-				0
-			);
-
-			return { wins, losses, draws, ptsMarked, ptsConceided };
-		} else {
-			return { wins: 0, losses: 0, draws: 0, ptsMarked: 0, ptsConceided: 0 };
-		}
-	};
-
 	/* --- Render --- */
 
 	if (!team) return <div className="loading-message"></div>;
@@ -184,40 +148,7 @@ const TeamGames = () => {
 					</h2>
 
 					<div className="container">
-						<div className="games-totals flex sp-center">
-							<p>
-								<b>{games.allGames.length}</b> GAMES
-							</p>
-							<p>
-								<b>{getGameStats(games.allGames).wins}</b> WINS
-							</p>
-							<p>
-								<b>
-									{(
-										(getGameStats(games.allGames).wins * 100) /
-										games.allGames.length
-									).toFixed(1)}{" "}
-									%
-								</b>
-								WINS
-							</p>
-							<p>
-								<b>{getGameStats(games.allGames).losses}</b> LOSSES
-							</p>
-
-							<p>
-								<b>{getGameStats(games.allGames).draws}</b> DRAWS
-							</p>
-							<div className="flex-col">
-								<p>
-									<b>{getGameStats(games.allGames).ptsMarked}</b> POINTS MARKED
-								</p>
-								<p>
-									<b>{getGameStats(games.allGames).ptsConceided}</b> POINTS
-									CONCEDED
-								</p>
-							</div>
-						</div>
+						<TeamStats games={games.allGames} team={team} />
 
 						<div className="row headers">
 							<div className="col-3 strong">Date</div>

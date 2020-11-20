@@ -15,3 +15,13 @@
 	width: 45px;
 	margin-right: 6px;
 }
+
+/* Team logo in player profile */
+#player-modal > div > div > div.modal-body {
+	position: relative;
+}
+#player-modal .Logo {
+	width: 120px;
+	position: absolute;
+	right: 0;
+}

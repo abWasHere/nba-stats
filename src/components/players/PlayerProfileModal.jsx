@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { PlayersContext } from "../../contexts/PlayersContext";
-
+import Logo from "./../teams/Logo";
+//--------------------------------
 import "./../../styles/playerProfile.css";
+//--------------------------------
 
 const glossary = {
 	F: "Forward",
@@ -35,7 +37,7 @@ const PlayerProfileModal = () => {
 						</h5>
 					</div>
 					<div className="modal-body">
-						<p className="modal-team-name">{playerPicked.team.full_name}</p>
+						<div className="modal-team-name">{playerPicked.team.full_name}</div>
 						<p>
 							<b>Position : </b>
 							{glossary[playerPicked.position]} ({playerPicked.position})
@@ -48,6 +50,7 @@ const PlayerProfileModal = () => {
 							<b>Weight :</b> {playerPicked.weight_pounds} pounds
 						</p>
 					</div>
+					<Logo teamAbbreviation={playerPicked.team.abbreviation} />
 				</div>
 			</div>
 		</div>

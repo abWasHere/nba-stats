@@ -8,6 +8,7 @@
 
 .modal-title {
 	font-size: 35px;
+	height: 80px;
 }
 
 .modal-body p:not(.modal-team-name) {
@@ -17,7 +18,7 @@
 
 .modal-team-name {
 	font-size: 22px;
-	text-align: end;
+	text-align: right;
 	font-weight: 700;
 	border-bottom: 1px solid #e9ecef;
 	padding-bottom: 10px;
