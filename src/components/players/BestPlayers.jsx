@@ -27,7 +27,7 @@ const BestPlayers = () => {
 			{!statsAreLoading && (
 				<div className="container">
 					<h2 className="section-title">
-						{team.full_name} <br />
+						{team.full_name.toUpperCase()} <br />
 						{season} Best Players
 					</h2>
 

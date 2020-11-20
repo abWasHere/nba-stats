@@ -1,4 +1,5 @@
 import React from "react";
+import TeamStatsChart from "./TeamStatsChart";
 
 const TeamStats = ({ games, team }) => {
 	const getGameStats = (theGames) => {
@@ -35,43 +36,45 @@ const TeamStats = ({ games, team }) => {
 	};
 
 	return (
-		<div className="TeamStats flex sp-center">
-			<p>
-				<b>{games.length}</b> GAMES
-			</p>
-			<p>
-				<b>{getGameStats(games).wins}</b> WINS
-			</p>
-			<p>
-				<b>{((getGameStats(games).wins * 100) / games.length).toFixed(1)}% </b>
-				WINS
-			</p>
-			<p>
-				<b>{getGameStats(games).losses}</b> LOSSES
-			</p>
+		<div className="TeamStats">
+			<div className="flex sp-center">
+				<p>
+					<b>{games.length}</b> GAMES
+				</p>
+				<p>
+					<b>{getGameStats(games).wins}</b> WINS
+				</p>
 
-			<p>
-				<b>{getGameStats(games).draws}</b> DRAWS
-			</p>
-			<div className="flex-col total-points">
-				<div className="flex">
-					<p className="points">
-						<b>{getGameStats(games).ptsMarked}</b>
-					</p>
-					<p>
-						points <br />
-						marked
-					</p>
+				<p>
+					<b>{getGameStats(games).losses}</b> LOSSES
+				</p>
+
+				<p>
+					<b>{getGameStats(games).draws}</b> DRAWS
+				</p>
+				<div className="flex-col total-points">
+					<div className="flex">
+						<p className="points">
+							<b>{getGameStats(games).ptsMarked}</b>
+						</p>
+						<p>
+							points <br />
+							marked
+						</p>
+					</div>
+					<div className="flex">
+						<p className="points">
+							<b>{getGameStats(games).ptsConceded}</b>
+						</p>
+						<p>
+							points <br />
+							conceded
+						</p>
+					</div>
 				</div>
-				<div className="flex">
-					<p className="points">
-						<b>{getGameStats(games).ptsConceded}</b>
-					</p>
-					<p>
-						points <br />
-						conceded
-					</p>
-				</div>
+			</div>
+			<div className="chart">
+				<TeamStatsChart team={getGameStats(games)} />
 			</div>
 		</div>
 	);

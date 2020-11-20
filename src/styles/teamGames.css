@@ -32,9 +32,10 @@
 }
 
 .TeamGames .TeamStats .total-points {
-	padding: 0 5px;
+	padding: 2px;
 	border-radius: 5px;
-	border: 1px solid blue;
+	box-shadow: 1px 1px 6px rgb(161, 161, 161);
+
 	margin-left: 10px;
 }
 
@@ -48,12 +49,22 @@
 	text-align: right;
 	width: 58px;
 	margin-right: 5px;
+}
+
+.TeamStats > div.flex.sp-center > div > div:nth-child(1) > p.points {
 	color: var(--logo-red-color);
+}
+.TeamStats > div.flex.sp-center > div > div:nth-child(2) > p.points {
+	color: #455a64;
 }
 
 .TeamGames .TeamStats .total-points p:nth-of-type(2) {
 	margin-left: 0;
 	line-height: 13px;
+}
+
+.TeamGames .TeamChart {
+	margin-top: 10px;
 }
 
 .TeamGames .row {

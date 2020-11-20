@@ -142,7 +142,7 @@ const TeamGames = () => {
 			) : (
 				<>
 					<h2 className="section-title">
-						{team.full_name}
+						{team.full_name.toUpperCase()}
 						<br />
 						{season} Games
 					</h2>
